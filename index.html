@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenLayers Vite Project</title>
+    <style>
+        /* 外部容器布局*/
+        .container {
+            display: flex;  /* 使用 flexbox 布局 */
+            justify-content: space-between;  /* 两个 div 之间保持等距 */
+        }
+        /* 设置地图容器的宽高 */
+        #map {
+            width: 80%;
+            height: 80vh;
+        }
+        /* 右侧菜单样式 */
+        #menu {
+            width: 20%;
+            height: 80vh;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="map">
+        <div id="group" class="btn-group">
+            <button id="point" type="button" class="btn btn-primary">画点</button>
+            <button id="lineString" type="button" class="btn btn-success">画线</button>
+            <button id="polygon" type="button" class="btn btn-warning">画面</button>
+            <button id="circle" type="button" class="btn btn-info">画圆</button>
+            <button id="stop" type="button" class="btn btn-danger">结束</button>
+            <button id="save" type="button" class="btn btn-danger">数据入库</button>
+        </div>
+    </div>
+    <div id="menu">
+        
+    </div>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

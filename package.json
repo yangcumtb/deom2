@@ -1,0 +1,22 @@
+{
+  "name": "deom2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "vite": "^5.4.3"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "ol": "^10.1.0",
+    "shapefile": "^0.6.6"
+  }
+}
