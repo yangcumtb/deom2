@@ -173,10 +173,17 @@ $('#stop').click(function () {
 // 数据入库
 $('#save').click(function () {
     // 判断结果不为空
-    if (geoJsonEntitis.length > 0) {
-
-
-    }
+    alert("功能没做")
+})
+// 显示隐藏切换
+$('#change1').click(function () {
+    alert("功能还没做")
+})
+$('#change2').click(function () {
+    alert("功能还没做")
+})
+$('#change3').click(function () {
+    alert("功能还没做")
 })
 
 // 测试数据库连接
