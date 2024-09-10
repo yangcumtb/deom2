@@ -15,10 +15,124 @@
             width: 80%;
             height: 80vh;
         }
+        /*工具按钮布局*/
+        #group {
+            display: flex; /* 使用 flexbox 布局按钮 */
+            flex-wrap: wrap; /* 按钮在容器内换行 */
+            gap: 10px; /* 按钮之间的间距 */
+            padding: 10px; /* 容器内边距 */
+            border: 1px solid #ddd; /* 容器边框 */
+            border-radius: 8px; /* 圆角边框 */
+            background-color: #f9f9f9; /* 背景色 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+            max-width: 100%; /* 最大宽度为100% */
+            justify-content: center; /* 按钮居中对齐 */
+        }
+
         /* 右侧菜单样式 */
         #menu {
             width: 20%;
             height: 80vh;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .status-module, .tables-module {
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .status-module {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .tables-module {
+            background-color: #fff;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .connection-status {
+            font-size: 16px;
+        }
+
+        ul#tables-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul#tables-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        ul#tables-list li:last-child {
+            border-bottom: none;
+        }
+
+        ul#tables-list li:hover {
+            background-color: #f0f0f0;
+        }
+        #tables-list {
+            list-style: none; /* 移除默认的列表样式 */
+            padding: 0;
+        }
+
+        #tables-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        #tables-list li:hover {
+            background-color: #e6f2ff;
+        }
+
+        .toggle-btn {
+            background-color: #007bff; /* 蓝色按钮背景 */
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background-color: #0056b3; /* 按钮悬停时的颜色 */
+        }
+        .custom-btn {
+            background-color: #007bff; /* 默认蓝色背景 */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 4px; /* 适度圆角 */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-right: 10px; /* 按钮之间的间距 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-btn:hover {
+            background-color: #0056b3; /* 悬停时颜色 */
+            transform: translateY(-2px); /* 鼠标悬停时轻微上移 */
+        }
+
+        .custom-btn:active {
+            transform: translateY(0); /* 按下时恢复 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -26,19 +140,47 @@
 <div class="container">
     <div id="map">
         <div id="group" class="btn-group">
-            <button id="point" type="button" class="btn btn-primary">画点</button>
-            <button id="lineString" type="button" class="btn btn-success">画线</button>
-            <button id="polygon" type="button" class="btn btn-warning">画面</button>
-            <button id="circle" type="button" class="btn btn-info">画圆</button>
-            <button id="stop" type="button" class="btn btn-danger">结束</button>
-            <button id="save" type="button" class="btn btn-danger">数据入库</button>
+            <button id="point" type="button" class="custom-btn">画点</button>
+            <button id="lineString" type="button" class="custom-btn">画线</button>
+            <button id="polygon" type="button" class="custom-btn">画面</button>
+            <button id="circle" type="button" class="custom-btn">画圆</button>
+            <button id="stop" type="button" class="custom-btn">结束</button>
+            <button id="save" type="button" class="custom-btn">数据入库</button>
         </div>
     </div>
     <div id="menu">
-        
+        <div class="status-module">
+            <h2>数据库连接状态</h2>
+            <p class="connection-status">连接状态：连接成功</p>
+            <p class="connection-status">数据库类型：postgresql</p>
+            <p class="connection-status">数据库地址：localhost</p>
+            <p class="connection-status">数据库端口：5432</p>
+            <p class="connection-status">数据库名称：demo2</p>
+            <button id="pgconnect" type="button" class="custom-btn" >连接测试</button>
+
+        </div>
+        <div class="tables-module">
+            <h2>图层列表</h2>
+            <ul id="tables-list">
+                <!-- 表列表项将在这里动态添加 -->
+                <li>
+                    绘制图层
+                    <button class="toggle-btn">显示/隐藏</button>
+                </li>
+                <li>
+                    测试数据2
+                    <button class="toggle-btn">显示/隐藏</button>
+                </li>
+                <li>
+                    测试数据3
+                    <button class="toggle-btn">显示/隐藏</button>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 
 <script type="module" src="/src/main.js"></script>
+<!--<script type="module" src="/src/serve.js"></script>-->
 </body>
 </html>

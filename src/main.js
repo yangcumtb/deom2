@@ -7,12 +7,28 @@ import {Draw} from "ol/interaction";
 import {Style} from "ol/style";
 import {Circle} from "ol/style";
 import {Fill} from "ol/style";
-import { Vector as VectorLayer } from 'ol/layer';
-import { Vector as VectorSource } from 'ol/source';
+import {Vector as VectorLayer} from 'ol/layer';
+import {Vector as VectorSource} from 'ol/source';
 import {Stroke} from "ol/style";
+// import {getAllTables} from "./DBoption";
 
 import $ from 'jquery';
 import {GeoJSON} from "ol/format";
+
+/**
+ * 获取数据库列表
+ * @returns {Promise<void>}
+ */
+const fetchTables = async () => {
+    try {
+        const response = await fetch('http://localhost:3000/tables');
+        const tables = await response.json();
+        console.log('Tables:', tables);
+    } catch (error) {
+        console.error('Error fetching tables:', error);
+    }
+};
+
 // 定义变量来存储绘制的json实体
 let geoJsonEntitis = []
 
@@ -162,4 +178,12 @@ $('#save').click(function () {
 
     }
 })
+
+// 测试数据库连接
+$('#pgconnect').click(function () {
+    // 判断结果不为空
+    const dbres = fetchTables()
+    console.log(dbres)
+})
+
 
