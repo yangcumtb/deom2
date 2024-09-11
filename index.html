@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>OpenLayers Vite Project</title>
     <style>
         /* 外部容器布局*/
         .container {
-            display: flex;  /* 使用 flexbox 布局 */
-            justify-content: space-between;  /* 两个 div 之间保持等距 */
+            display: flex; /* 使用 flexbox 布局 */
+            justify-content: space-between; /* 两个 div 之间保持等距 */
         }
+
         /* 设置地图容器的宽高 */
         #map {
             width: 80%;
             height: 80vh;
         }
+
         /*工具按钮布局*/
         #group {
             display: flex; /* 使用 flexbox 布局按钮 */
@@ -38,6 +40,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
+
         .status-module, .tables-module {
             padding: 20px;
             border-bottom: 1px solid #ddd;
@@ -79,6 +82,7 @@
         ul#tables-list li:hover {
             background-color: #f0f0f0;
         }
+
         #tables-list {
             list-style: none; /* 移除默认的列表样式 */
             padding: 0;
@@ -94,6 +98,7 @@
             border-radius: 8px;
             background-color: #f9f9f9;
         }
+
         #tables-list li:hover {
             background-color: #e6f2ff;
         }
@@ -112,6 +117,7 @@
         .toggle-btn:hover {
             background-color: #0056b3; /* 按钮悬停时的颜色 */
         }
+
         .custom-btn {
             background-color: #007bff; /* 默认蓝色背景 */
             color: white;
@@ -134,6 +140,11 @@
             transform: translateY(0); /* 按下时恢复 */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
+
+        .custom-input {
+            height: 80%;
+            width: 600px;
+        }
     </style>
 </head>
 <body>
@@ -146,6 +157,11 @@
             <button id="circle" type="button" class="custom-btn">画圆</button>
             <button id="stop" type="button" class="custom-btn">结束</button>
             <button id="save" type="button" class="custom-btn">数据入库</button>
+            <div>
+<!--                <button id="loadshp" type="button" class="custom-btn">加载shp数据</button>-->
+<!--                <input class="custom-input">-->
+                <input type="file" id="shapefile" class="custom-btn" accept=".zip" />
+            </div>
         </div>
     </div>
     <div id="menu">
@@ -156,25 +172,13 @@
             <p class="connection-status">数据库地址：localhost</p>
             <p class="connection-status">数据库端口：5432</p>
             <p class="connection-status">数据库名称：demo2</p>
-            <button id="pgconnect" type="button" class="custom-btn" >连接测试</button>
-
+            <button id="pgconnect" type="button" class="custom-btn">连接测试</button>
+            <button id="reload" type="button" class="custom-btn">刷新图层</button>
         </div>
         <div class="tables-module">
             <h2>图层列表</h2>
             <ul id="tables-list">
                 <!-- 表列表项将在这里动态添加 -->
-                <li>
-                    绘制图层
-                    <button id="change1" class="toggle-btn">显示/隐藏</button>
-                </li>
-                <li>
-                    测试数据2
-                    <button id="change2" class="toggle-btn">显示/隐藏</button>
-                </li>
-                <li>
-                    测试数据3
-                    <button id="change3" class="toggle-btn">显示/隐藏</button>
-                </li>
             </ul>
         </div>
     </div>
